@@ -366,6 +366,8 @@ S_f(f) =  \left[ 3 \, (0.00076 \, \bar{v}_{10}^2 + 0.0304 \, \bar{v}_{10})\right
 \label{e:dimensional}
 \end{multline}
 
+\vspace{3em}
+
 \subsubsection{Generating Wind Time Series}
 The wind model is described by the PSD in (\ref{e:dimensional}) which allows us to generate sample functions of the underlying stochastic process using a summation of cosines approach similar to the implementation of the Gerstner waves.  The combined turbulence and gusting wind speed is expressed as
 \begin{equation}
@@ -436,6 +438,7 @@ Our intended use of the VRX simulation, as described in this article, does not j
 
 %The motion of a vessel is approximated in simulation by estimating each of the constituent forces in \eqref{e:fossenmodel} at each time step of the simulation.
 %The rigid body components are simulated using the Gazebo physics engine.  The remaining constituents are simulated using the model components described below.
+\newpage
 
 \subsection{Hydrodynamic Forces}\label{s:hydro}
 The hydrodynamic forces in \eqref{e:fossenmodel} include the added mass terms due to inertia of the surrounding fluid and hydrodynamic damping.  The hydrodynamic derivatives are expressed using SNAME (1950) notation \citep{fossen11handbook}.  The simplified added mass matrix is expressed as
