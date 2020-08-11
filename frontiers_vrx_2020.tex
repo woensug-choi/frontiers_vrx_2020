@@ -185,7 +185,7 @@ If visual fidelity were the sole consideration, convincing wave fields could be 
 The single-value Pierson-Moskowitz spectrum represents a fully developed sea in deep water and depends upon specifying  the peak angular frequency ($\omega_p$) or the significant wave height ($H_s$) which are related by
 % If visual fidelity were the sole consideration, empirically selecting a small set of component wave amplitudes and directions for use in \eqref{e:gerstner} can generate qualitatively realistic wave fields, but with limited connection between the simulated wave field and the physical ocean environment.  One method to generate component wave characteristics representative of a particular ocean and weather condition is to generate these parameters by sampling a parametric wave spectrum \citep{mastin87fourier,thon00ocean,frechot06realistic}.  The wave spectrum  $G(\omega)$ captures the mean energy in a wave field as a function of angular frequency ($\omega$).  A number of standard ocean spectra can be used to describe the wave field environment \citep{ittc02waves}.  In  \citep{frechot06realistic} a single-value Pierson-Moskowitz wave spectrum is sampled to generate the wave field.  The Pierson-Moskowitz spectrum represents a fully developed sea in deep water and depends upon specifying  the peak angular frequency ($\omega_p$) or the significant wave height ($H_s$) which are related by
 \begin{equation}
-  H_s = \frac{0.162 \, g}{\omega_p^2}.
+  H_s = \frac{0.161 \, g}{\omega_p^2}.
   \label{e:pmh}
 \end{equation}
 
@@ -274,7 +274,7 @@ Spectral representations of ocean wind environments are common and generally mod
 \begin{equation}
   f^* = \frac{f \, z}{\bar{v}(z)},
 \end{equation}
-where $z$ is the height and $\bar{v}(z)$ is the mean wind speed as a function of height. The constants $A$ and $B$ are chosen to fit specific observational data.  We use the mean coefficients from of $A=42.0$ and $B=63.0$, as reported by \citet{forristall88wind}  These values satisfy the constraint $A=(2/3)B$, necessary so that the variance of the stochastic process is $\sigma^2$, i.e.,
+where $z$ is the height and $\bar{v}(z)$ is the mean wind speed as a function of height. The constants $A$ and $B$ are chosen to fit specific observational data.  We use the mean coefficients from of $A=42.0$ and $B=63.0$, as reported by \citet{forristall88wind}. These values satisfy the constraint $A=(2/3)B$, necessary so that the variance of the stochastic process is $\sigma^2$, i.e.,
 \begin{equation}
   \int_0^{\infty} S_f(f) df = \sigma^2.
 \end{equation}
@@ -332,17 +332,17 @@ v_* = \frac{\kappa \, \bar{v}(z=10)}{\ln(z=10/z_0)} = \frac{\kappa \, \bar{v}_{1
 \end{equation}
 Multiple models of the relationship between sea surface roughness ($z_0$) and friction velocity ($v_*$) are available.  Based on dimensional analysis \citet{charnock55wind} proposed 
 \begin{equation}
-\frac{z_0 g }{v_*^2} = \alpha
+\frac{z_0 g }{v_*^2} = \beta
 \label{e:charnock}
 \end{equation}
-where $g$ is the acceleration of gravity; $\alpha = [0.013, 0.0185]$ has been found to be consistent with empirical wind profiles over the ocean \citep{garratt77review,toba90wave}.  %Alternatively this relationship can be considered to be a function of the degree of wave development, or wave age,
+where $g$ is the acceleration of gravity; $\beta = [0.013, 0.0185]$ has been found to be consistent with empirical wind profiles over the ocean \citep{garratt77review,toba90wave}.  %Alternatively this relationship can be considered to be a function of the degree of wave development, or wave age,
 %\begin{equation}
 %\frac{z_0 g }{v_*^2} = \mathsf{f} (c_p/v_*)
 %\label{e:waveage}
 %\end{equation}
 %where $c_p$ is the phase velocity of the dominant wave and $c_p/v_*$ describes wave age \citep{myrhaung09effect}.  An example of the functional relationship for (\ref{e:waveage}) is provided in \citep{volkov01dependence}.
 
-Without loss of generality, we numerically solve for $V_{*}$ by combining (\ref{e:profile10}) and (\ref{e:charnock}) with $\alpha= 0.0144$ for values of $v_{10} = [4, 21]\unit[]{m/s}$ \citep{garratt77review}.  The resulting values are illustrated in Figure~\ref{f:wind_consts}.
+Without loss of generality, we numerically solve for $V_{*}$ by combining (\ref{e:profile10}) and (\ref{e:charnock}) with $\beta= 0.0144$ for values of $v_{10} = [4, 21]\unit[]{m/s}$ \citep{garratt77review}.  The resulting values are illustrated in Figure~\ref{f:wind_consts}.
 \begin{figure}[hbt!]
   \centering
   \includegraphics[width=\SFc\textwidth]{wind_consts.png}
@@ -532,7 +532,7 @@ This approximation of the hydrodynamic effects is implemented as a parameterized
 This simplified six degree-of-freedom model and the Gazebo plugin are generally applicable to surface vessels.  Applying this model to a specific vessel requires determining values for the hydrodynamic derivatives.  These values can be approximated from first principles (e.g., potential flow theory) or estimated through experimental testing (e.g., scale model testing).  \citet{sarda16station} estimate the hydrodynamic derivatives for a three degree-of-freedom model of the \wamv{} vessel by manually tuning the coefficients so that the model outputs agree with experimental measurements from at-sea maneuvering tests.  Each of the of linear drag terms in  \eqref{e:D} are estimated, but only the surge term in the quadratic drag matrix \eqref{e:D_n} is identified, implying that the remaining quadratic terms are neglected. We adopt these specific values for modeling the \wamv{} within the simulation as part of the VRX challenge use-case.
 
 \subsection{Hydrostatic and Wave Forces}
-The presence of ocean waves has two important effects in the context of developing autonomy for surface vessels: motion control effects and perception effects.  These two effects are captured in the vessel model hydrostatic  ($\bm{g}(\bm{\eta})$) and wave excitation ($\tau_{waves}$) terms in  \eqref{e:fossenmodel} and by the wave modeling presented in Section~\ref{s:wave}.  The visual model is implemented as a custom OpenGL shader to render the water surface based on the wave state.  The physical model uses the wave surface state at the vessel location to approximate the induced motion.  
+The presence of ocean waves has two important effects in the context of developing autonomy for surface vessels: motion control effects and perception effects.  These two effects are captured in the vessel model hydrostatic  ($\bm{g}(\bm{\eta})$) and wave excitation ($\bm{\tau}_{waves}$) terms in  \eqref{e:fossenmodel} and by the wave modeling presented in Section~\ref{s:wave}.  The visual model is implemented as a custom OpenGL shader to render the water surface based on the wave state.  The physical model uses the wave surface state at the vessel location to approximate the induced motion.  
 
 For the \wamv{} catamaran, a discretization of each demi-hull is performed based on the user-supplied grid resolution, $P$.  Algorithm~\ref{a:waves} outlines the structure of the Gazebo plugin used to generate the effect of incident waves.  On line 11 the wave force is generated based on the position and velocity of the vessel grid point, the velocity at the corresponding location on the wave field surface and the demi-hull geometry.  This restoring force is applied to the corresponding vessel location using the Gazebo API to generate the wave induced motion.
 \begin{algorithm}[H]
